@@ -81,7 +81,10 @@ public class MemberController {
 		return "member/idCheckResult";
 	}
 	
-	
+	@GetMapping("/user/mypage")
+	public String mypage() {
+		return "member/mypage";
+	}//-------------------------
 }
 
 

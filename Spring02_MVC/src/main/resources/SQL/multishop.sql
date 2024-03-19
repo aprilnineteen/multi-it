@@ -223,7 +223,25 @@ from cartView where userid='hong';
 
 
 
+-- member view 생성 --------------
+select userid, name, mstate,pwd from member;
 
+update member set mstate=-2 where userid = 'park';
+update member set mstate=-1 where userid = 'rose';
+
+update member set mstate=9 where userid = 'conan';
+
+commit;
+
+create or replace view memberView
+as
+select m.*, decode(mstate,0,'활동회원',-1,'정지회원',-2,'탈퇴회원',9,'관리자') mstateStr
+from member m
+where mstate >-2;
+
+
+select name, userid, mstate, mstateStr
+from memberView;
 
 
 

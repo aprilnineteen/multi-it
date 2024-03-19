@@ -34,11 +34,13 @@
 		<property name="password" value="${db.password}"/>
 		<!-- <property name="autoCommit" value="false"/> -->
 	</bean>
+	
 	<!--[4] SqlSessionFactoryBean 등록  -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource-hikari"/>
 		<property name="configLocation" value="classpath:/config/mybatis/mybatis-config.xml"/>
 	</bean>	
+	
 	<!--[5] SqlSessionTemplate 등록 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
