@@ -48,4 +48,3 @@
 	<mybatis-spring:scan base-package="com.multi.mapper"/>
 </beans>
 
-

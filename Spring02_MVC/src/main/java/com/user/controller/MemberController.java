@@ -60,14 +60,14 @@ public class MemberController {
 		}
 	
 	@PostMapping("/idCheck")
-	public String idCheckEnd(Model m, @RequestParam("id") String id) {
+	public String idCheckEnd(Model m, @RequestParam("userid") String userid) {
 									  // 파라미터값 id로 전달
-		if(id == null || id.trim().isBlank()) {
+		if(userid == null || userid.trim().isBlank()) {
 			String msg="아이디를 다시 입력하세요.";
 			return util.addMsgBack(m, msg);
 		} // 유효성 체크
 		
-		int isUse = mService.idCheck(id);
+		int isUse = mService.idCheck(userid);
 		// 중복 확인
 		
 		String msg = (isUse != 1) ? "사용 가능한 아이디입니다." : "이미 사용 중인 아이디입니다.";
@@ -76,7 +76,7 @@ public class MemberController {
 		
 		m.addAttribute("msg", msg);
 		m.addAttribute("result", result);
-		m.addAttribute("userid", id);
+		m.addAttribute("uid", userid);
 		
 		return "member/idCheckResult";
 	}

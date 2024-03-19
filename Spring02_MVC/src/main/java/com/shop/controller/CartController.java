@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.common.util.CommonUtil;
 import com.shop.domain.CartVO;
 import com.shop.service.ShopService;
+import com.user.domain.MemberVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -31,10 +31,12 @@ public class CartController {
 	private CommonUtil util;
 	
 	@PostMapping("/cartAdd") //상품번호와 수량이 파라미터로 들어옴
-	public String addCart(Model m,CartVO cvo) {
+	public String addCart(Model m,CartVO cvo, HttpSession session) {
 		log.info("cvo: "+cvo);
 		//세션에서 로그인한 사람의 아이디 가져오기
-		String userid="hong";//수정 예정
+		MemberVO user = (MemberVO)session.getAttribute("loginUser");
+		String userid=user.getUserid();//수정 예정
+		
 		cvo.setUserid(userid);
 		//장바구니에 추가
 		int n=shopService.addCart(cvo);//insert or update
@@ -57,8 +59,9 @@ public class CartController {
 		
 	}//--------------------------------
 	@GetMapping("/cartList")
-	public String cartList(Model m) {
-		String userid="hong";// 나중에 수정
+	public String cartList(Model m, HttpSession session) {
+		MemberVO user = (MemberVO)session.getAttribute("loginUser");
+		String userid=user.getUserid();//수정 예정
 		//특정 회원의 장바구니 목록 가져오기
 				List<CartVO> cartArr=shopService.selectCartView(userid);
 				//log.info("cartArr: "+cartArr);
@@ -83,7 +86,8 @@ public class CartController {
 	
 	@GetMapping("/cartDelAll")
 	public String cartDeleteAll(HttpSession session) {
-		String userid="hong";// 세션에서 로그인한 사람 아이디 꺼내기
+		MemberVO user = (MemberVO)session.getAttribute("loginUser");
+		String userid=user.getUserid();//수정 예정
 		CartVO cartVo = new CartVO();
 		cartVo.setUserid(userid);
 		int n=shopService.delCartAll(cartVo);

@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import javax.inject.Inject;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,7 +21,7 @@ public class CommonExceptionAdvice {
 	@Inject
 	private CommonUtil util;
 	
-	@ExceptionHandler(NumberFormatException.class)
+	@ExceptionHandler({NumberFormatException.class,NotUserException.class})
 	public String exceptionHandler(Exception ex, Model m) {
 		String msg = ex.getMessage();// 예외 메시지
 		

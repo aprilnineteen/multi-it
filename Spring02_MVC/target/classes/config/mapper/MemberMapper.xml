@@ -11,8 +11,15 @@
  		, SYSDATE,1000,0)
  	</insert>
  	 
- <select id="idCheck" resultType="_int" parameterType="String">
+ <select id="idCheck" resultType="_int" parameterType="string">
     select count(userid) from member
     where userid = #{value}
+</select>
+
+<select id="selectByUserid" resultType="Member" parameterType="string">
+	select * from member
+	<where>
+		userid=#{userid}
+	</where>
 </select>
  </mapper>

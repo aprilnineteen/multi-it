@@ -15,6 +15,7 @@ public interface MemberService {
 	int idCheck(String userid);
 	
 	List<MemberVO> selectAll();
+	
 	MemberVO selectByUserid(String userid);
 	
 	MemberVO loginCheck(MemberVO tmpUser) throws NotUserException;
