@@ -2,6 +2,37 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script>
+// $.ajax() : AJAX 처리를 하는  JQUERY 함수
+$(function(){
+	$('#upCg_code').on('change', function(){
+		let upCode=$(this).val();
+		//alert(upCode);
+		$.ajax({
+			type:'get', //요청메서드
+			url:'downCgListJSON?upCg_code='+upCode,//서버 url
+			dataType:'json', //응답유형(html,text,json,xml)
+			cache:false, //캐시 사용 안 함
+			success:function(res){//성공적 응답이 온 경우
+				alert(res); //반복문 이용
+				let str='<option value="">:: 하위 카테고리 ::</option>';
+				for(var i=0;i<res.length;i++){
+					let obj=res[i];//카테고리
+					str+=`<option value="\${obj.downCg_code}">\${obj.downCg_name}</option>`	
+				}//for
+				$('#downCg_code').html(str);
+			}, 
+			error:function(err){//에러 발생 시
+				alert('error: '+err.status);
+			}
+					
+		});
+	})//onchange----------
+	
+	
+})//$()end----
+</script>
+
 <h2 class="text-center">상품 등록-Product Form</h2>
 <div class="row">
 <div class="col-md-10 offset-1">
@@ -22,11 +53,7 @@
 					<!-- 하위 카테고리 -->
 					<span id="downCg">
 					<select name="downCg_code" id="downCg_code">
-						<option value="">::하위 카테고리::</option>
-						<!--  ------------------ -->
-						<option value="1">노트북</option>
-						<option value="2">냉장고</option>
-						<!--  ------------------ -->
+						<!-- ajax로 하위 카테고리 받아올 예정 -->
 					</select>					
 					</span>
 				</td>
