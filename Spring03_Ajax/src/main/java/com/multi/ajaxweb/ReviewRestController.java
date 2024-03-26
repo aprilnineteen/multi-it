@@ -71,35 +71,36 @@ public class ReviewRestController {
 	public ModelMap reviewInsert2(ReviewVO vo,
 			@RequestParam(value="mode", defaultValue="insert") String mode,
 			@RequestParam("mfilename") MultipartFile mfilename, HttpSession session) {
-		ServletContext app = session.getServletContext();
-		//log.info(app);
+		ServletContext app=session.getServletContext();
+		//log.info("app: "+app);
 		//1. 업로드 절대경로 얻기
-		String upDir = app.getRealPath("/resources/images");
-		log.info(upDir);
+		String upDir=app.getRealPath("/resources/images");
+		
+		log.info("upDir: "+upDir);
 		//2. 업로드 처리
 		if(!mfilename.isEmpty()) {
-		String fname = mfilename.getOriginalFilename(); //첨부파일명
-		try {
-		mfilename.transferTo(new File(upDir, fname));//업로드함
-	
-		//3. 첨부파일명을 ReviewVO에 setting
-		vo.setFilename(fname);
-		//////////////////////
-		}catch(IOException e) {
-			log.error(e);
+			String fname=mfilename.getOriginalFilename();//첨부파일명
+			try {
+				mfilename.transferTo(new File(upDir, fname));//업로드함
+				//3. 첨부파일명을 ReviewVO에 setting
+				vo.setFilename(fname);
+				////////////////////
+			}catch(IOException e) {
+				log.error(e);
 			}
 		}
-		log.info(mode);
-		int n = 0;
-		if(mode.equals("insert")) {
-			n = rService.insertReview(vo);
+		log.info("mode: "+mode);
+		int n=0;
+		if(mode.equals("insert")) {	
+			n=rService.insertReview(vo);
 		}else if(mode.equals("edit")) {
 			n=rService.updateReview(vo);
 		}
-		ModelMap map = new ModelMap();
 		
-		String str=(n>0) ? "ok" : "fail";
-		map.addAttribute("result", str);
+		ModelMap map=new ModelMap();
+		
+		String str=(n>0)?"ok":"fail";
+		map.addAttribute("result",str);
 		map.addAttribute("pnum",vo.getPnum());
 		return map;
 	}

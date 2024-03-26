@@ -41,7 +41,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public int updateReview(ReviewVO rvo) {
-		return updateReview(rvo);
+		return rMapper.updateReview(rvo);
 	}
 
 }

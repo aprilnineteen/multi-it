@@ -360,24 +360,26 @@
 			})
 			.done((res)=>{
 				//alert(JSON.stringify(res))
-				$('#score'+res.score).prop('checked', true);
+				$('#score'+res.score).prop('checked',true);
 				//스코어 점수 체크
 				$('#writer').html(res.userid);
+				
 				$('#title').val(res.title);
 				$('#userid').val(res.userid);
 				$('#pnum').val(res.pnum);
 				$('#no').val(res.no);
 				$('#content').val(res.content);
 				if(res.filename!=null){
-					let str=`<img src="resources/images\${res.filename}" class="img-fluid">`;
-				$('#prodImg').html(str);
-			}
+					let str=`<img src="resources/images/\${res.filename}" class="img-fluid">`;
+					$("#prodImg").html(str);
+				}
+				
 				$('#btn1').text("글수정");
 			})
 			.fail((err)=>{
-				alert(err.status)
+				alert('err: '+err.status)		
 			})
-		}//edit
+		}//edit()--------------------------------
 	
 </script>
 </html>
