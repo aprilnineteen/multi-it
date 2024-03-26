@@ -5,7 +5,9 @@
 	.jumbotron, .navbar{
 		display:none;
 	}  
-</style> 
+</style>
+
+ 
 <script>
 	function id_check(){
 		if(!idf.userid.value){
