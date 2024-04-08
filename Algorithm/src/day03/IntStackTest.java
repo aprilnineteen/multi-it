@@ -18,13 +18,13 @@ public class IntStackTest {
 			sk.push(60);
 		}
 		sk.printStack();
-		System.out.println(sk.pop()+"°ªÀ» ½ºÅÃ¿¡¼­ »èÁ¦");
-		System.out.println(sk.size()+"°³ ³²¾Ò¾î¿ä");
+		System.out.println(sk.pop()+"ê°’ì„ ìŠ¤íƒì—ì„œ ì‚­ì œ");
+		System.out.println(sk.size()+"ê°œ ë‚¨ì•˜ì–´ìš”");
 		System.out.println(sk.peek());
 		sk.pop();
 		sk.pop();
 		System.out.println("sk.peek() "+sk.peek());
-		System.out.println(sk.size()+"°³ ³²¾Ò¾î¿ä");
+		System.out.println(sk.size()+"ê°œ ë‚¨ì•˜ì–´ìš”");
 		sk.printStack();
 		
 		sk.clear();
@@ -32,22 +32,22 @@ public class IntStackTest {
 		if(!sk.empty()) {
 			sk.pop();
 		}
-		//100~500 ÀúÀå
+		//100~500 ì €ì¥
 		for(int i=1; i<6; i++) {
 			sk.push(i*100);
 		}
 		System.out.println("--------------");
-		//Ãâ·Â
+		//ì¶œë ¥
 		sk.printStack();
 		
-		//300°ª °Ë»ö
+		//300ê°’ ê²€ìƒ‰
 		int idx=sk.search(300);
 		if(idx>0) {
-			System.out.println(idx+"¹øÂ°¿¡ ÀÖ¾î¿ä");
+			System.out.println(idx+"ë²ˆì§¸ì— ìˆì–´ìš”");
 		}else {
-			System.out.println("¾ø½À´Ï´Ù");
+			System.out.println("ì—†ìŠµë‹ˆë‹¤");
 		}
-			//600°ª °Ë»ö
+			//600ê°’ ê²€ìƒ‰
 	}
 
 }
