@@ -30,6 +30,6 @@
  	<num><%=num%></num>
  	<name><%=name%></name>
  	<addr><%=addr%></addr>
- 	<phone type="cell"><%=phone%></phone>
+ 	<phone type="cell"><%=tel%></phone>
  	</user>
  	

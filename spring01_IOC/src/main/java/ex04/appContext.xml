@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- MessageBeanImpl 객체를 bean으로 등록. id는 mb1 -->
+	<bean id="mb1" class="ex04.MessageBeanImpl"/>
+	<!-- mb1 = new MessageBeanImp1(); mb1의 프로퍼티에는 null값만 들어간다 -->
+	
+	<bean id="mb2" class="ex04.MessageBeanImpl">
+		<property name="greeting">
+		<value>환절기 감기 조심하세요</value>
+		</property>
+		<!-- mb2.setGreeting("환절기 감기 조심하세요");와 동일 -->
+		<property name="name" value="송하니"/>
+		<!-- mb2.setName("송하니"); -->
+	<property name="today">
+	 <ref bean="date"/>
+	 </property>
+	 <!-- mb2.setToday(date); -->
+	</bean>
+	<!-- Date 객체를 빈으로 등록 -->
+	<bean id="date" class="java.util.Date"/>
+	<!-- Date date = new Date(); -->
+	
+	<bean id="random" class="java.util.Random"/>
+	
+	<!-- mb3로 MessageBeanImpl 빈 등록하기
+		이름과 인삿말 주입하기, 날짜, 랜덤숫자도 주입하기
+		HelloSpringApp에서 룩업해서 각각 메서드 호출해보세요
+	 -->
+	 <bean id="mb3" class="ex04.MessageBeanImpl">
+	 	<property name="greeting" value="좋은 하루 되세요"></property>
+	 	<property name="name" value="미나토자키 사나"></property>
+	 	<property name="today" ref="date"/>
+	 	<property name="ran" ref="random"/>
+	 </bean>
+</beans>
