@@ -5,7 +5,7 @@ import java.util.List;
 public interface PostsService {
 	
 	int insertPosts(PostsVO vo);
-	
+
 	List<PostsVO> listPosts();
 	
 	PostsVO selectPosts(String id);
@@ -13,5 +13,4 @@ public interface PostsService {
 	int deletePosts(String id);
 	
 	int updatePosts(PostsVO vo);
-	
 }

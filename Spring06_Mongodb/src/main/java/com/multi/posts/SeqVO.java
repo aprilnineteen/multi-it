@@ -6,13 +6,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
 
-
-/*db.sequence.insertOne({collectionName:'posts', count:0})
-db.sequence.find()*/
-
+/*
+db.sequence.insertOne({collectionName:'posts', count:0})
+db.sequence.find()
+ * */
 @Data
 @Document(collection="sequence")
 public class SeqVO {
+	
 	@Id
 	private String id;
 	
@@ -21,4 +22,6 @@ public class SeqVO {
 	
 	@BsonProperty
 	private int count;
+	
+
 }

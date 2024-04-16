@@ -13,11 +13,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Document(collection="posts")
 public class PostsVO {
+	
 	@Id
 	private String id;
 	
 	@BsonProperty(value="no")
-	private int no; // 글번호
+	private int no;//글번호
 	
 	@BsonProperty(value="author")
 	private String author;
@@ -27,4 +28,5 @@ public class PostsVO {
 	
 	@BsonProperty(value="wdate")
 	private String wdate;
+
 }
