@@ -1,5 +1,7 @@
 package com.multi.controller;
 
+import java.io.File;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +29,23 @@ public class NCP04OCRController {
 	@PostMapping("/ocrEnd")
 	public ModelMap ocrProcess(@RequestParam("imgFile") MultipartFile mfile, HttpSession ses) {
 		//1. 이미지 파일 서버에 업로드 처리
+		String upDir = ses.getServletContext().getRealPath("/upload");
+		String fname = mfile.getOriginalFilename();
+		File file = new File(upDir, fname);
+		String result = "";
+		try {
+			mfile.transferTo(file); // 업로드 처리
+		} catch (Exception e) {
+			System.out.println("업로드 실패: "+e);
+			result=e.toString();
+		}
+		//2. 서비스에 이미지 파일 절대 경로 전달
+		String filePath = file.getAbsolutePath(); // 업로드 파일의 절대경로
+		result = ocrService.extractTextFromImage(filePath);
+				
 		
 		ModelMap map = new ModelMap();
-		map.put("result", "텍스트");
+		map.put("result", result);
 		return map;
 	}
 }
