@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class MelonServiceImpl implements MelonService {
 	
 	private final MelonDAO mDao;
-	private String url="https://www.melon.com/chart/index.htm";
+	private String url="C:\\Users\\User\\Downloads\\result.html";
 
 	@Override
 	public int collectMelonList() throws Exception {

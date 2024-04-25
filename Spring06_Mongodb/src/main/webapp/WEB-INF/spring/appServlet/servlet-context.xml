@@ -23,7 +23,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.multi.web,com" />
+	<context:component-scan base-package="com.multi.web, com, com.multi.melon" />
 	
 	<!-- mongodb setting  -->
 	<!-- mongo 네임스페이스 추가 -->
